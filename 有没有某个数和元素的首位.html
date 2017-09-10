@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src='../数组/shuzu.js'></script>
+</head>
+<body>
+	<script>
+	  //映射看一个数组中有没有某数
+        var arr1=[34,78,90,74,23]
+        var result=val(arr1,function(value){
+        	if(value==78){
+        		return value;
+        	}
+        })
+        console.log(result);
+        function val(arr,fn){
+        	for(var i=0;i<arr.length;i++){
+        	if(fn(arr[i])){
+        		return true;
+        	}
+        }
+        		return false;
+        
+      }
+	 //数组中某个元素的首次位置 
+	var arr1=[12,34,56,78,87,76];
+	var result=indexof(arr1,function(value){
+		if(value==78){
+			return value;
+		}
+	})
+	console.log(result);
+		function indexof(arr,fn){
+			for(var i=0;i<arr.length;i++){
+				if(fn(arr[i])){
+					return i;
+				}
+			}
+			return -1;
+		}
+		//数组中某个元素的末位置 
+	var arr1=[12,34,56,78,87,76];
+	var result=indexof(arr1,function(value){
+		if(value==78){
+			return value;
+		}
+	})
+	console.log(result);
+		function indexof(arr,fn){
+			for(var i=arr.length-1;i>=0;i--){
+				if(fn(arr[i])){
+					return i;
+				}
+			}
+			return -1;
+		}
+	//数组反转
+	  var arr1=[1,2,3];
+      var result=reverse(arr1);
+      console.log(result);
+	 function reverse(arr){
+	 	var newarr=[]
+	 	for(var i=arr.length-1;i>=0;i--){
+	 		push(newarr,arr[i]);
+	 	}
+	 	return newarr;
+	 }
+	 // 添加push
+	 function push(arr,...rest){
+	 	for(var i=0;i<rest.length;i++){
+	 		arr[arr.length]=rest[i];
+	 	}
+	 }
+     // 万能的删除
+     function spliceCancle(arr,pos,num){
+     	var newarr=[];
+     	for(var i=0;i<arr.length;i++){
+     		if(i>=pos && i<pos+num){
+     			continue;
+     		}
+     		newarr[newarr.length]=arr[i];
+     	}
+     	return newarr;
+     }
+     var arr2=[1,2,3,4,5,6,7,8]
+     console.log(splice(arr2,2,2));
+     //万能的添加
+     function spliceAdd(arr,pos,...rest){
+     	var newarr=[];
+     	for (var i=0;i<pos;i++){
+     		newarr[newarr.length]=arr[i];
+     	}
+     	for (var i=0;i<rest.length;i++){
+     		newarr[newarr.length]=rest[i];
+     	}
+     	for (var i=pos;i<arr.length;i++){
+     		newarr[newarr.length]=arr[i];
+     	}
+     	return newarr;
+     }
+     var arr3=[1,2,3,4,5,6]
+     result=spliceAdd(arr3,2,'a','b','c')
+     console.log(result);
+     //...特殊运算符
+     //...rest 打包
+     //再次使用...rest 把数组里的元素拆分出来
+     function splice(arr,pos,num,...rest){
+     	var newarr=spliceCancle(arr,pos,num);
+     	if(rest.length>0){
+     		newarr=spliceAdd(newarr,pos,...rest);
+     	}
+     	return newarr;
+     }
+     var arr4=[1,2,3,4,5,6,7,8,9]
+     result=splice(arr4,2,1,'a','b','c');
+     console.log(result);
+      
+     var arr5=[1,2,3,4]
+     var result=some(arr5,function(value){
+     	return value>5;
+     })
+     console.log(result);
+
+     var result=every(arr5,function(value){
+     	return value>3;
+     })
+     console.log(result);
+	</script>
+
+</body>
+</html>
